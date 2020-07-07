@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.service.name }}
+  labels:
+    {{- include "inventory.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "inventory.labels" . | indent 6 }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
+  template:
+    metadata:
+      labels:
+        {{- include "inventory.labels" . | indent 8 }}
+    spec:
+      containers:
+      - name: "{{  .Chart.Name  }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+{{ if .Values.istio.enabled }}
+{{ else }}
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9080
+          initialDelaySeconds: 60
+          periodSeconds: 20
+          failureThreshold: 6
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9080
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          failureThreshold: 6
+{{ end }}
+        resources:
+        {{- include "inventory.resources" . | indent 10 }}
+        env:
+          {{- if .Values.travis.external }}
+          - name: rabbit
+            value: "{{ .Values.travis.releaseName }}-{{ .Values.service.rabbitmq }}"
+          {{- else}}
+          - name: rabbit
+            value: "{{ .Release.Name }}-{{ .Values.service.rabbitmq }}"
+          {{- end }}
+          - name: jdbcURL
+            value: "jdbc:mysql://{{ .Release.Name }}-{{ .Values.service.database }}:{{ .Values.mysql.port }}/inventorydb?useSSL=false"
+          - name: PORT
+            value: "{{ .Values.service.servicePort }}"
+          - name: APPLICATION_NAME
+            value: "{{ .Release.Name }}"
+          - name: zipkinHost
+            value: "{{ .Release.Name }}-{{ .Values.service.zipkinName }}"
+          - name: zipkinPort
+            value: "{{ .Values.service.zipkinPort }}"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    bluecompute: "true"
+    #prometheus.io/scrape: "true"
+  name: {{ .Release.Name }}-{{ .Values.service.name }}
+  labels:
+    {{- include "inventory.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - name: http
+    port: {{ .Values.service.servicePort }}
+  - name: https
+    port: {{ .Values.service.servicePortHttps }}
+  selector:
+    {{- include "inventory.labels" . | indent 4 }}
