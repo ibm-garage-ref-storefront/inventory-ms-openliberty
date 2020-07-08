@@ -27,6 +27,7 @@
     <refresh>false</refresh>
     <installAppsConfigDropins>/opt/ol/wlp/usr/servers/defaultServer/configDropins/defaults/install_apps_configuration_1491924271.xml</installAppsConfigDropins>
     <projectType>war</projectType>
+    <projectCompileDependency>mysql:mysql-connector-java:5.1.39</projectCompileDependency>
     <projectCompileDependency>com.rabbitmq:amqp-client:5.1.2</projectCompileDependency>
     <projectCompileDependency>org.slf4j:slf4j-api:1.7.25</projectCompileDependency>
     <projectCompileDependency>com.google.code.gson:gson:2.8.5</projectCompileDependency>

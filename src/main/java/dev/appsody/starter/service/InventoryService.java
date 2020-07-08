@@ -58,7 +58,6 @@ public class InventoryService {
 
     private final static String QUEUE_NAME = "stock";
 
-    @Inject
     Tracer tracer;
 
     @GET

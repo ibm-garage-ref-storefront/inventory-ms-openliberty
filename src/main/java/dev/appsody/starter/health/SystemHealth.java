@@ -39,7 +39,7 @@ public class SystemHealth implements HealthCheck {
 		//Checking if the Inventory database is UP
 		System.out.println("isInventoryDbReady");
 		JDBCConnection jdbcConnection = new JDBCConnection();
-
+		System.out.println("jdbcConnection,,, " + jdbcConnection);
 		java.sql.Connection connection = jdbcConnection.getConnection();
 
 		if (connection != null)
