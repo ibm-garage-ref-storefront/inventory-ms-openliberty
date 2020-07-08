@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<liberty-plugin-config>
+    <installDirectory>/opt/ol/wlp</installDirectory>
+    <serverDirectory>/opt/ol/wlp/usr/servers/defaultServer</serverDirectory>
+    <userDirectory>/opt/ol/wlp/usr</userDirectory>
+    <serverOutputDirectory>/opt/ol/wlp/usr/servers/defaultServer</serverOutputDirectory>
+    <serverName>defaultServer</serverName>
+    <configDirectory>/project/user-app/src/main/liberty/config</configDirectory>
+    <configFile>/project/user-app/src/main/liberty/config/server.xml</configFile>
+    <bootstrapProperties>
+        <app.context.root>starter-app</app.context.root>
+        <default.http.port>9080</default.http.port>
+        <default.https.port>9443</default.https.port>
+    </bootstrapProperties>
+    <appsDirectory>apps</appsDirectory>
+    <looseApplication>true</looseApplication>
+    <stripVersion>true</stripVersion>
+    <installAppPackages>project</installAppPackages>
+    <applicationFilename>starter-app.war.xml</applicationFilename>
+    <assemblyArtifact>
+        <groupId>io.openliberty</groupId>
+        <artifactId>openliberty-runtime</artifactId>
+        <version>19.0.0.12</version>
+        <type>zip</type>
+    </assemblyArtifact>
+    <assemblyInstallDirectory>/project/user-app/target/liberty</assemblyInstallDirectory>
+    <refresh>false</refresh>
+    <installAppsConfigDropins>/opt/ol/wlp/usr/servers/defaultServer/configDropins/defaults/install_apps_configuration_1491924271.xml</installAppsConfigDropins>
+    <projectType>war</projectType>
+    <projectCompileDependency>com.rabbitmq:amqp-client:5.1.2</projectCompileDependency>
+    <projectCompileDependency>org.slf4j:slf4j-api:1.7.25</projectCompileDependency>
+    <projectCompileDependency>com.google.code.gson:gson:2.8.5</projectCompileDependency>
+    <projectCompileDependency>io.opentracing:opentracing-api:0.30.0</projectCompileDependency>
+    <warSourceDirectory>/project/user-app/src/main/webapp</warSourceDirectory>
+</liberty-plugin-config>

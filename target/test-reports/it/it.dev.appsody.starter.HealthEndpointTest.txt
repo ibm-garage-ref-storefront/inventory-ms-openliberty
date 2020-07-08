@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: it.dev.appsody.starter.HealthEndpointTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.155 s <<< FAILURE! - in it.dev.appsody.starter.HealthEndpointTest
+testLivenessEndpoint  Time elapsed: 0.119 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index: 0
+	at it.dev.appsody.starter.HealthEndpointTest.checkHealthEndpoint(HealthEndpointTest.java:67)
+	at it.dev.appsody.starter.HealthEndpointTest.testLivenessEndpoint(HealthEndpointTest.java:46)
+
+testReadinessEndpoint  Time elapsed: 0.033 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index: 0
+	at it.dev.appsody.starter.HealthEndpointTest.checkHealthEndpoint(HealthEndpointTest.java:67)
+	at it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint(HealthEndpointTest.java:52)
+
