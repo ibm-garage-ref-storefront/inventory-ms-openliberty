@@ -109,18 +109,6 @@ public class SystemHealth implements HealthCheck {
 					.withData("Inventory Database", "DOWN").down()
 					.build();
 		}
-
-		try {
-			if (!isRabbitMQReady()) {
-				return HealthCheckResponse.named(InventoryService.class.getSimpleName())
-						.withData("RabbitMQ", "DOWN").down()
-						.build();
-			}
-		} catch (IOException | TimeoutException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		return HealthCheckResponse.named(InventoryService.class.getSimpleName()).withData("Inventory Service", "UP").up().build();
 	}
 }

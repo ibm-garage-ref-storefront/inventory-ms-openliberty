@@ -74,10 +74,10 @@ function toggleDisplay(elementId) {
 <tr class="b">
 <td>3</td>
 <td>0</td>
-<td>1</td>
 <td>0</td>
-<td>66.667%</td>
-<td>2.769</td></tr></table><br />
+<td>0</td>
+<td>100%</td>
+<td>1.991</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></section><section>
 <h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
@@ -94,10 +94,10 @@ function toggleDisplay(elementId) {
 <td><a href="#it.dev.appsody.starter">it.dev.appsody.starter</a></td>
 <td>3</td>
 <td>0</td>
-<td>1</td>
 <td>0</td>
-<td>66.667%</td>
-<td>2.769</td></tr></table><br />
+<td>0</td>
+<td>100%</td>
+<td>1.991</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p><section>
 <h3><a name="it.dev.appsody.starter"></a>it.dev.appsody.starter</h3><a name="it.dev.appsody.starter"></a>
 <table border="1" class="bodyTable">
@@ -111,14 +111,14 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#it.dev.appsody.starter.HealthEndpointTest"><figure><img src="images/icon_warning_sml.gif" alt="" /></figure></a></td>
+<td><a href="#it.dev.appsody.starter.HealthEndpointTest"><figure><img src="images/icon_success_sml.gif" alt="" /></figure></a></td>
 <td><a href="#it.dev.appsody.starter.HealthEndpointTest">HealthEndpointTest</a></td>
 <td>2</td>
 <td>0</td>
-<td>1</td>
 <td>0</td>
-<td>50%</td>
-<td>1.463</td></tr>
+<td>0</td>
+<td>100%</td>
+<td>0.753</td></tr>
 <tr class="a">
 <td><a href="#it.dev.appsody.starter.EndpointTest"><figure><img src="images/icon_success_sml.gif" alt="" /></figure></a></td>
 <td><a href="#it.dev.appsody.starter.EndpointTest">EndpointTest</a></td>
@@ -127,7 +127,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>1.306</td></tr></table></section><br /></section><section>
+<td>1.238</td></tr></table></section><br /></section><section>
 <h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><section>
 <h3><a name="HealthEndpointTest"></a>HealthEndpointTest</h3><a name="it.dev.appsody.starter.HealthEndpointTest"></a>
@@ -135,46 +135,17 @@ function toggleDisplay(elementId) {
 <tr class="a">
 <td><figure><img src="images/icon_success_sml.gif" alt="" /></figure></td>
 <td><a name="TC_it.dev.appsody.starter.HealthEndpointTest.testLivenessEndpoint"></a>testLivenessEndpoint</td>
-<td>0.191</td></tr>
+<td>0.151</td></tr>
 <tr class="b">
-<td><a href="#it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint"><figure><img src="images/icon_error_sml.gif" alt="" /></figure></a></td>
-<td><a name="TC_it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint"></a><a href="#it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint">testReadinessEndpoint</a>
-<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint');"><span style="display:inline;" id="it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint-off"> + </span><span style="display:none;" id="it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint-on"> - </span>[ Detail ]</a></div></td>
-<td>1.268</td></tr>
-<tr class="a">
-<td></td>
-<td>Incorrect response code from http://localhost:9080/health/ready ==&gt; expected: &lt;200&gt; but was: &lt;500&gt;</td>
-<td></td></tr>
-<tr class="b">
-<td></td>
-<td>
-<div id="it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint-failure" style="display:none;">
-<div>
-<pre>org.opentest4j.AssertionFailedError: Incorrect response code from http://localhost:9080/health/ready ==&gt; expected: &lt;200&gt; but was: &lt;500&gt;
-	at it.dev.appsody.starter.HealthEndpointTest.assertResponse(HealthEndpointTest.java:96)
-	at it.dev.appsody.starter.HealthEndpointTest.checkHealthEndpoint(HealthEndpointTest.java:59)
-	at it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint(HealthEndpointTest.java:52)
-</pre></div></div></td>
-<td></td></tr></table></section><section>
+<td><figure><img src="images/icon_success_sml.gif" alt="" /></figure></td>
+<td><a name="TC_it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint"></a>testReadinessEndpoint</td>
+<td>0.597</td></tr></table></section><section>
 <h3><a name="EndpointTest"></a>EndpointTest</h3><a name="it.dev.appsody.starter.EndpointTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><figure><img src="images/icon_success_sml.gif" alt="" /></figure></td>
 <td><a name="TC_it.dev.appsody.starter.EndpointTest.testResourceEndpoint"></a>testResourceEndpoint</td>
-<td>1.274</td></tr></table></section><br /></section><section>
-<h2><a name="Failure_Details"></a>Failure Details</h2><a name="Failure_Details"></a>
-<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
-<table border="1" class="bodyTable">
-<tr class="a">
-<td><figure><img src="images/icon_error_sml.gif" alt="" /></figure></td>
-<td><a name="it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint"></a>testReadinessEndpoint</td></tr>
-<tr class="b">
-<td></td>
-<td>org.opentest4j.AssertionFailedError: Incorrect response code from http://localhost:9080/health/ready ==&gt; expected: &lt;200&gt; but was: &lt;500&gt;</td></tr>
-<tr class="a">
-<td></td>
-<td>
-<div id="testReadinessEndpoint-failure">it.dev.appsody.starter.HealthEndpointTest:52</div></td></tr></table><br /></section>
+<td>1.213</td></tr></table></section><br /></section>
       </div>
     </div>
     <div class="clear">
