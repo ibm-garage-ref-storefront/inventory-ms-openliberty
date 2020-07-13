@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: it.dev.appsody.starter.HealthEndpointTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.84 s <<< FAILURE! - in it.dev.appsody.starter.HealthEndpointTest
-testReadinessEndpoint  Time elapsed: 0.736 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Incorrect response code from http://localhost:9080/health/ready ==> expected: <200> but was: <503>
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.463 s <<< FAILURE! - in it.dev.appsody.starter.HealthEndpointTest
+testReadinessEndpoint  Time elapsed: 1.268 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Incorrect response code from http://localhost:9080/health/ready ==> expected: <200> but was: <500>
 	at it.dev.appsody.starter.HealthEndpointTest.assertResponse(HealthEndpointTest.java:96)
 	at it.dev.appsody.starter.HealthEndpointTest.checkHealthEndpoint(HealthEndpointTest.java:59)
 	at it.dev.appsody.starter.HealthEndpointTest.testReadinessEndpoint(HealthEndpointTest.java:52)

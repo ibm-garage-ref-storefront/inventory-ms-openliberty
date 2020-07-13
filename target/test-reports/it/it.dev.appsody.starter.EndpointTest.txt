@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: it.dev.appsody.starter.EndpointTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.053 s - in it.dev.appsody.starter.EndpointTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.306 s - in it.dev.appsody.starter.EndpointTest
