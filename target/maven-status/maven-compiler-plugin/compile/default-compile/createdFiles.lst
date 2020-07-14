@@ -1,10 +1,10 @@
 dev/appsody/starter/health/StarterReadinessCheck.class
-dev/appsody/starter/StarterApplication.class
+dev/appsody/starter/InventoryApplication.class
 dev/appsody/starter/service/InventoryService$1.class
 dev/appsody/starter/health/SystemHealth.class
 dev/appsody/starter/utils/JDBCConnection.class
 dev/appsody/starter/model/Inventory.class
-dev/appsody/starter/utils/InventoryDAOImpl.class
-dev/appsody/starter/StarterResource.class
+dev/appsody/starter/repository/InventoryRepository.class
+dev/appsody/starter/InventoryResource.class
 dev/appsody/starter/health/StarterLivenessCheck.class
 dev/appsody/starter/service/InventoryService.class
