@@ -4,10 +4,6 @@ import com.google.gson.Gson;
 import com.rabbitmq.client.*;
 import dev.appsody.starter.model.Inventory;
 import dev.appsody.starter.repository.InventoryRepository;
-import io.opentracing.ActiveSpan;
-import io.opentracing.Tracer;
-import org.eclipse.microprofile.config.Config;
-import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.Metered;
@@ -26,9 +22,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.concurrent.TimeoutException;
 
 @ApplicationScoped
 @Path("/inventory")
@@ -43,9 +36,6 @@ import java.util.concurrent.TimeoutException;
         )
 )
 public class InventoryService {
-
-    private final static String QUEUE_NAME = "stock";
-
 
     @GET
     @Produces("application/json")
@@ -102,72 +92,5 @@ public class InventoryService {
         InventoryRepository inv = new InventoryRepository();
         Gson gson = new Gson();
         return gson.toJson(inv.getInventoryDetails());
-    }
-
-    // Order service uses this API to update stock
-    @GET
-    @Path("/stock")
-    @Produces("text/plain")
-    @Retry(maxRetries = 2, maxDuration = 5000)
-    @APIResponses(value = {
-            @APIResponse(
-                    responseCode = "500",
-                    description = "Internal Server Error",
-                    content = @Content(
-                            mediaType = "text/plain"
-                    )
-            ),
-            @APIResponse(
-                    responseCode = "200",
-                    description = "Stock Validation",
-                    content = @Content(
-                            mediaType = "text/plain"
-                    )
-            )
-    }
-    )
-    @Operation(
-            summary = "Stock Validation",
-            description = "Validates the Inventory Stock"
-    )
-    public String stock() throws IOException, TimeoutException {
-        consumer();
-        return "Stock Validated";
-    }
-
-    public void consumer() throws IOException, TimeoutException {
-        Tracer tracer = null;
-        try (ActiveSpan childSpan = tracer.buildSpan("Grabbing messages from Messaging System").startActive()) {
-            System.out.println("consumer!!!!");
-            ConnectionFactory factory = new ConnectionFactory();
-            Config config = ConfigProvider.getConfig();
-            String rabbit_host = config.getValue("rabbit", String.class);
-            factory.setHost(rabbit_host);
-            Connection connection = factory.newConnection();
-            Channel channel = connection.createChannel();
-
-            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            System.out.println(" Waiting ... Waiting ... Waiting for the messages");
-            System.out.println(". To exit press CTRL+C");
-
-            Consumer consumer = new DefaultConsumer(channel) {
-                @Override
-                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
-                        throws IOException {
-                    String message = new String(body, StandardCharsets.UTF_8);
-                    System.out.println("Received the message '" + message + "'");
-                    String[] splited = message.split(" ");
-
-                    InventoryRepository inv = new InventoryRepository();
-
-                    long id = Long.parseLong(splited[0]);
-                    int stock = Integer.parseInt(splited[1]);
-
-                    inv.updateStock(stock, id);
-
-                }
-            };
-            channel.basicConsume(QUEUE_NAME, true, consumer);
-        }
     }
 }

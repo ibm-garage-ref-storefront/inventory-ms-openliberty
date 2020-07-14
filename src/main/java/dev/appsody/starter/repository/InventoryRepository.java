@@ -13,9 +13,13 @@ import java.util.List;
 
 public class InventoryRepository {
 
-    public List getInventoryDetails() {
+    /**
+     * Method is responsible for retrieving the inventory details from the database.
+     * @return List of type Inventory
+     */
+    public List<Inventory> getInventoryDetails() {
 
-        List invData = new ArrayList<>();
+        List<Inventory> inventoryItems = new ArrayList<>();
 
         JDBCConnection jdbcConnection = new JDBCConnection();
 
@@ -26,15 +30,15 @@ public class InventoryRepository {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Inventory inv = new Inventory();
-                inv.setId(rs.getLong("id"));
-                inv.setName(rs.getString("name"));
-                inv.setStock(rs.getInt("stock"));
-                inv.setPrice(rs.getInt("price"));
-                inv.setImg_alt(rs.getString("img_alt"));
-                inv.setImg(rs.getString("img"));
-                inv.setDescription(rs.getString("description"));
-                invData.add(inv);
+                Inventory item = new Inventory();
+                item.setId(rs.getLong("id"));
+                item.setName(rs.getString("name"));
+                item.setStock(rs.getInt("stock"));
+                item.setPrice(rs.getInt("price"));
+                item.setImg_alt(rs.getString("img_alt"));
+                item.setImg(rs.getString("img"));
+                item.setDescription(rs.getString("description"));
+                inventoryItems.add(item);
             }
 
         } catch (SQLException e) {
@@ -42,134 +46,6 @@ public class InventoryRepository {
             e.printStackTrace();
         }
 
-        return invData;
-    }
-
-    public List<Inventory> findByNameContaining(String name) {
-
-        List invData = new ArrayList<>();
-
-        JDBCConnection jdbcConnection = new JDBCConnection();
-
-        Connection connection = jdbcConnection.getConnection();
-
-        try {
-            PreparedStatement ps = connection.prepareStatement(
-                    "select id,stock,price,img_alt,img,name,description from inventorydb.items where name = ?");
-            ps.setString(1, name);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Inventory inv = new Inventory();
-                inv.setId(rs.getLong("id"));
-                inv.setStock(rs.getInt("stock"));
-                inv.setName(rs.getString("name"));
-                inv.setPrice(rs.getInt("price"));
-                inv.setImg_alt(rs.getString("img_alt"));
-                inv.setImg(rs.getString("img"));
-                inv.setDescription(rs.getString("description"));
-                invData.add(inv);
-
-            }
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.out.println(invData);
-        return invData;
-    }
-
-    public List<Inventory> findByPriceLessThanEqual(double price) {
-
-        List invData = new ArrayList<>();
-
-        JDBCConnection jdbcConnection = new JDBCConnection();
-
-        Connection connection = jdbcConnection.getConnection();
-
-        try {
-            PreparedStatement ps = connection.prepareStatement(
-                    "select id,stock,price,img_alt,img,name,description from inventorydb.items where price <= ?");
-            ps.setDouble(1, price);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Inventory inv = new Inventory();
-                inv.setId(rs.getLong("id"));
-                inv.setStock(rs.getInt("stock"));
-                inv.setName(rs.getString("name"));
-                inv.setPrice(rs.getInt("price"));
-                inv.setImg_alt(rs.getString("img_alt"));
-                inv.setImg(rs.getString("img"));
-                inv.setDescription(rs.getString("description"));
-                invData.add(inv);
-
-            }
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.out.println(invData);
-        return invData;
-    }
-
-    public Inventory findOne(long id) {
-
-        Inventory inventory = new Inventory();
-
-        JDBCConnection jdbcConnection = new JDBCConnection();
-
-        Connection connection = jdbcConnection.getConnection();
-
-        try {
-            PreparedStatement ps = connection.prepareStatement(
-                    "select id,stock,price,img_alt,img,name,description from inventorydb.items where id = ?");
-            ps.setLong(1, id);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Inventory inv = new Inventory();
-                inv.setId(rs.getLong("id"));
-                inv.setStock(rs.getInt("stock"));
-                inv.setPrice(rs.getInt("price"));
-                inv.setName(rs.getString("name"));
-                inv.setImg_alt(rs.getString("img_alt"));
-                inv.setImg(rs.getString("img"));
-                inv.setDescription(rs.getString("description"));
-                inventory = inv;
-
-            }
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.out.println(inventory);
-        return inventory;
-    }
-
-    public void updateStock(int stock, long id) {
-
-        JDBCConnection jdbcConnection = new JDBCConnection();
-
-        Connection connection = jdbcConnection.getConnection();
-
-        try {
-            String query = "update inventorydb.items SET stock = stock - ? " + " WHERE id = ?";
-
-            // create the mysql insert preparedstatement
-            PreparedStatement preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, stock);
-            preparedStmt.setLong(2, id);
-            // execute the preparedstatement
-            preparedStmt.execute();
-
-            connection.close();
-        } catch (Exception e) {
-            System.err.println("Got an exception!");
-            System.err.println(e.getMessage());
-        }
+        return inventoryItems;
     }
 }
