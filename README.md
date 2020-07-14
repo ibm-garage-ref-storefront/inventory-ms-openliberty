@@ -2,12 +2,8 @@
 
 ## Table of Contents
 
-* [Building Inventory using Maven](#building-inventory-using-maven)
-* [Setting up MySQL](#setting-up-mysql)
-* [Setting up Zipkin](#setting-up-zipkin) (Optional)
-* [Running Inventory and stopping it](#running-inventory-and-stopping-it)
-* [Deploying Inventory using Helm charts](#deploying-inventory-using-helm-charts)
-
+* [Pre-requisites](#pre-requisites)
+* [Run Locally](#run-locally)
 
 ## Pre-requisites:
 * [Appsody](https://appsody.dev/)
@@ -21,7 +17,7 @@ For more details on installation, check [this](https://appsody.dev/docs/installi
     + [Docker for Windows](https://docs.docker.com/docker-for-windows/)
     
     
-## Implementation Details
+## Run Locally
 To run this microservice locally run the following commands
 1. Clone repository: 
       ```
@@ -64,8 +60,8 @@ To run this microservice locally run the following commands
     - http://localhost:9080/index.html
     - http://localhost:9080/health
     - http://localhost:9080/openapi
-    - https://localhost:9443/ibm/api/
+    - http://localhost:9443/ibm/api/
 
-Visit localhost:9080/openapi/ui and test the rest end point `micro/inventory`
+Visit http://localhost:9080/openapi/ui/ and test the rest end point `micro/inventory`
 as shown below:
 ![](./images/openapi-ui.png)
