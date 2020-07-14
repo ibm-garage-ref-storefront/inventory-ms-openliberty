@@ -4,6 +4,6 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 @ApplicationPath("/micro")
-public class StarterApplication extends Application {
+public class InventoryApplication extends Application {
 
 }

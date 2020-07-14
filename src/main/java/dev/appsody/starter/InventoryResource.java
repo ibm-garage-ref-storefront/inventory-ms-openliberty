@@ -4,7 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Path("/resource")
-public class StarterResource {
+public class InventoryResource {
 
     @GET
     public String getRequest() {

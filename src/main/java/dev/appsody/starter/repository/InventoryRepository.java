@@ -1,7 +1,8 @@
-package dev.appsody.starter.utils;
+package dev.appsody.starter.repository;
 
 
 import dev.appsody.starter.model.Inventory;
+import dev.appsody.starter.utils.JDBCConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryDAOImpl {
+public class InventoryRepository {
 
     public List getInventoryDetails() {
 
@@ -34,7 +35,6 @@ public class InventoryDAOImpl {
                 inv.setImg(rs.getString("img"));
                 inv.setDescription(rs.getString("description"));
                 invData.add(inv);
-
             }
 
         } catch (SQLException e) {

@@ -3,7 +3,7 @@ package dev.appsody.starter.service;
 import com.google.gson.Gson;
 import com.rabbitmq.client.*;
 import dev.appsody.starter.model.Inventory;
-import dev.appsody.starter.utils.InventoryDAOImpl;
+import dev.appsody.starter.repository.InventoryRepository;
 import io.opentracing.ActiveSpan;
 import io.opentracing.Tracer;
 import org.eclipse.microprofile.config.Config;
@@ -21,14 +21,13 @@ import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
-import org.eclipse.microprofile.opentracing.Traced;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import java.io.IOException;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
 
 @ApplicationScoped
@@ -47,7 +46,6 @@ public class InventoryService {
 
     private final static String QUEUE_NAME = "stock";
 
-    Tracer tracer;
 
     @GET
     @Produces("application/json")
@@ -77,6 +75,7 @@ public class InventoryService {
             )
     }
     )
+
     @Operation(
             summary = "Get Inventory Items",
             description = "Retrieving all the available items from the inventory database"
@@ -95,16 +94,14 @@ public class InventoryService {
             displayName = "Inventory Call Frequency",
             description = "Rate of the calls made to Inventory",
             reusable = true)
-    public String getInvDetails() {
-        String invDetails = null;
-        List invlist = null;
-        InventoryDAOImpl inv = new InventoryDAOImpl();
-
-        invlist = inv.getInventoryDetails();
-
+    /**
+     * Method is responsible for retrieving inventory details for all items.
+     * @return a json object of inventory detail items
+     */
+    public String getInventoryDetails() {
+        InventoryRepository inv = new InventoryRepository();
         Gson gson = new Gson();
-        invDetails = gson.toJson(invlist);
-        return invDetails;
+        return gson.toJson(inv.getInventoryDetails());
     }
 
     // Order service uses this API to update stock
@@ -139,6 +136,7 @@ public class InventoryService {
     }
 
     public void consumer() throws IOException, TimeoutException {
+        Tracer tracer = null;
         try (ActiveSpan childSpan = tracer.buildSpan("Grabbing messages from Messaging System").startActive()) {
             System.out.println("consumer!!!!");
             ConnectionFactory factory = new ConnectionFactory();
@@ -156,11 +154,11 @@ public class InventoryService {
                 @Override
                 public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
                         throws IOException {
-                    String message = new String(body, "UTF-8");
+                    String message = new String(body, StandardCharsets.UTF_8);
                     System.out.println("Received the message '" + message + "'");
                     String[] splited = message.split(" ");
 
-                    InventoryDAOImpl inv = new InventoryDAOImpl();
+                    InventoryRepository inv = new InventoryRepository();
 
                     long id = Long.parseLong(splited[0]);
                     int stock = Integer.parseInt(splited[1]);
@@ -172,5 +170,4 @@ public class InventoryService {
             channel.basicConsume(QUEUE_NAME, true, consumer);
         }
     }
-
 }
