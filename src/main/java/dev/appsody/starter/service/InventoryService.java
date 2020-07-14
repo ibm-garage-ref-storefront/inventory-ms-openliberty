@@ -106,9 +106,7 @@ public class InventoryService {
             displayName = "Inventory Call Frequency",
             description = "Rate of the calls made to Inventory",
             reusable = true)
-    @Traced(value = true, operationName = "getInvDetails.list")
     public String getInvDetails() {
-        System.out.println("INVENTORY DETAILS!!!!");
         String invDetails = null;
         List invlist = null;
         InventoryDAOImpl inv = new InventoryDAOImpl();

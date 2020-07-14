@@ -20,7 +20,6 @@ public class InventoryDAOImpl {
         JDBCConnection jdbcConnection = new JDBCConnection();
 
         Connection connection = jdbcConnection.getConnection();
-
         try {
             PreparedStatement ps = connection.prepareStatement(
                     "select id,stock,price,img_alt,img,name,description from inventorydb.items");
