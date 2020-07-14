@@ -1,9 +1,0 @@
-/project/user-app/src/main/java/dev/appsody/starter/service/InventoryService.java
-/project/user-app/src/main/java/dev/appsody/starter/health/StarterReadinessCheck.java
-/project/user-app/src/main/java/dev/appsody/starter/StarterApplication.java
-/project/user-app/src/main/java/dev/appsody/starter/model/Inventory.java
-/project/user-app/src/main/java/dev/appsody/starter/utils/InventoryDAOImpl.java
-/project/user-app/src/main/java/dev/appsody/starter/health/SystemHealth.java
-/project/user-app/src/main/java/dev/appsody/starter/StarterResource.java
-/project/user-app/src/main/java/dev/appsody/starter/health/StarterLivenessCheck.java
-/project/user-app/src/main/java/dev/appsody/starter/utils/JDBCConnection.java
