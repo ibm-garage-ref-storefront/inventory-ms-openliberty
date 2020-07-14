@@ -1,10 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: it.dev.appsody.starter.EndpointTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.312 s <<< FAILURE! - in it.dev.appsody.starter.EndpointTest
-testResourceEndpoint  Time elapsed: 1.277 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Incorrect response code from http://localhost:9080/starter/resource ==> expected: <200> but was: <404>
-	at it.dev.appsody.starter.EndpointTest.assertResponse(EndpointTest.java:81)
-	at it.dev.appsody.starter.EndpointTest.checkEndpoint(EndpointTest.java:51)
-	at it.dev.appsody.starter.EndpointTest.testResourceEndpoint(EndpointTest.java:44)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.914 s - in it.dev.appsody.starter.EndpointTest

@@ -33,33 +33,30 @@ public class SystemHealth implements HealthCheck {
     private final static String QUEUE_NAME = "health";
     String health = "health_check";
 
-    public boolean isInventoryDbReady() {
-
-        //Checking if the Inventory database is UP
-        System.out.println("isInventoryDbReady");
+	/**
+	 * Method is responsible for checking if the inventory database is ready
+	 * @return true when database is ready, otherwise returns false
+	 */
+	public boolean isInventoryDbReady() {
         JDBCConnection jdbcConnection = new JDBCConnection();
-        System.out.println("jdbcConnection,,, " + jdbcConnection);
         java.sql.Connection connection = jdbcConnection.getConnection();
-
-        if (connection != null)
-            return true;
-        else
-            return false;
+		return connection != null;
     }
 
+	/**
+	 * Method is responsible for determining if RabbigMQ Service is ready
+	 * @return true if RabbitMQ is able to send a message
+	 * @throws IOException if there is an error
+	 * @throws TimeoutException or if we run out of time
+	 */
     public boolean isRabbitMQReady() throws IOException, TimeoutException {
+		return sendMessage();
+	}
 
-        //Checking if RabbitMQ is UP
-
-        boolean msgStatus = sendMessage();
-
-        if (msgStatus == true) {
-            return true;
-        }
-        return false;
-
-    }
-
+    /**
+     * Method is responsible for sending a message
+     * @return true if is able to send a message
+     */
     public boolean sendMessage() {
         try {
             ConnectionFactory factory = new ConnectionFactory();
@@ -90,10 +87,7 @@ public class SystemHealth implements HealthCheck {
             channel.close();
             connection.close();
             return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (TimeoutException e) {
+        } catch (IOException | TimeoutException e) {
             e.printStackTrace();
             return false;
         }
@@ -101,8 +95,6 @@ public class SystemHealth implements HealthCheck {
 
     @Override
     public HealthCheckResponse call() {
-        // TODO Auto-generated method stub
-
         if (!isInventoryDbReady()) {
             return HealthCheckResponse.named(InventoryService.class.getSimpleName())
                     .withData("Inventory Database", "DOWN").down()

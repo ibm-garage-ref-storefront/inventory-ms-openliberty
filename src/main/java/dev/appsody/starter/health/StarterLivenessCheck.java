@@ -12,7 +12,6 @@ public class StarterLivenessCheck implements HealthCheck {
 
     private boolean isAlive() {
         // perform health checks here
-
         return true;
     }
 

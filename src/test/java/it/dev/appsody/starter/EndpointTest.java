@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 public class EndpointTest {
     
     private static String baseUrl;
-    private static final String RESOURCE_ENDPOINT = "/starter/resource";
+    private static final String RESOURCE_ENDPOINT = "/micro/resource";
     private Client client;
     private Response response;
     

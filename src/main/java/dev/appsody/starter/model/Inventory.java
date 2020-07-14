@@ -1,22 +1,24 @@
 package dev.appsody.starter.model;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
 
 @Schema(name = "Inventory", description = "POJO that represents the Inventory item")
 public class Inventory {
-    private long id;
+    @Getter @Setter private long id;
 
-    private String name;
+    @Getter @Setter private String name;
 
-    private String description;
+    @Getter @Setter private String description;
 
-    private double price;
+    @Getter @Setter private double price;
 
-    private String img_alt;
+    @Getter @Setter private String img_alt;
 
-    private String img;
+    @Getter @Setter private String img;
 
-    private int stock;
+    @Getter @Setter private int stock;
 
     public Inventory() {
     }
@@ -34,74 +36,15 @@ public class Inventory {
         this.stock = stock;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long value) {
-        this.id = value;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String value) {
-        this.description = value;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(int value) {
-        this.price = value;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public String getImgAlt() {
-        return img_alt;
-    }
-
-    public void setImgAlt(String img_alt) {
-        this.img_alt = img_alt;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int value) {
-        this.stock = value;
-    }
-
     public String toString() {
-        StringBuilder string = new StringBuilder();
-        string.append("{\n");
-        string.append(String.format("\t\"id\": %s,\n", this.id));
-        string.append(String.format("\t\"name\": \"%s\",\n", this.name));
-        string.append(String.format("\t\"description\": \"%s\",\n", this.description));
-        string.append(String.format("\t\"price\": %s,\n", this.price));
-        string.append(String.format("\t\"imgAlt\": \"%s\",\n", this.img_alt));
-        string.append(String.format("\t\"img\": \"%s\",\n", this.img));
-        string.append(String.format("\t\"stock\": %s\n", this.stock));
-        string.append("}");
-
-        return string.toString();
+        return "{\n" +
+                String.format("\t\"id\": %s,\n", this.id) +
+                String.format("\t\"name\": \"%s\",\n", this.name) +
+                String.format("\t\"description\": \"%s\",\n", this.description) +
+                String.format("\t\"price\": %s,\n", this.price) +
+                String.format("\t\"imgAlt\": \"%s\",\n", this.img_alt) +
+                String.format("\t\"img\": \"%s\",\n", this.img) +
+                String.format("\t\"stock\": %s\n", this.stock) +
+                "}";
     }
 }
