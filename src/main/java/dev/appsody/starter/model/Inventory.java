@@ -2,7 +2,7 @@ package dev.appsody.starter.model;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-@Schema(name="Inventory", description="POJO that represents the Inventory item")
+@Schema(name = "Inventory", description = "POJO that represents the Inventory item")
 public class Inventory {
     private long id;
 
@@ -18,7 +18,8 @@ public class Inventory {
 
     private int stock;
 
-    public Inventory() { }
+    public Inventory() {
+    }
 
     public Inventory(long id) {
         this.id = id;

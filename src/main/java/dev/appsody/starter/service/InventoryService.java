@@ -1,21 +1,14 @@
 package dev.appsody.starter.service;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.TimeoutException;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Model;
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import com.google.gson.Gson;
+import com.rabbitmq.client.*;
 import dev.appsody.starter.model.Inventory;
 import dev.appsody.starter.utils.InventoryDAOImpl;
-import org.eclipse.microprofile.faulttolerance.Retry;
-
+import io.opentracing.ActiveSpan;
+import io.opentracing.Tracer;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
+import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Timed;
@@ -30,17 +23,13 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.opentracing.Traced;
 
-import com.google.gson.Gson;
-import com.rabbitmq.client.AMQP;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.Consumer;
-import com.rabbitmq.client.DefaultConsumer;
-import com.rabbitmq.client.Envelope;
-
-import io.opentracing.Tracer;
-import io.opentracing.ActiveSpan;
+import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 @ApplicationScoped
 @Path("/inventory")
@@ -92,7 +81,7 @@ public class InventoryService {
             summary = "Get Inventory Items",
             description = "Retrieving all the available items from the inventory database"
     )
-    @Timed (name = "Inventory.timer",
+    @Timed(name = "Inventory.timer",
             absolute = true,
             displayName = "Inventory Timer",
             description = "Time taken by the Inventory",
@@ -144,7 +133,6 @@ public class InventoryService {
             summary = "Stock Validation",
             description = "Validates the Inventory Stock"
     )
-    @Traced(value = true, operationName = "StockValidation")
     public String stock() throws IOException, TimeoutException {
         consumer();
         return "Stock Validated";

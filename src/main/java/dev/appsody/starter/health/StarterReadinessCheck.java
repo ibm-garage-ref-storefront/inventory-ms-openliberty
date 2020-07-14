@@ -1,10 +1,10 @@
 package dev.appsody.starter.health;
 
-import javax.enterprise.context.ApplicationScoped;
-
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.Readiness;
+
+import javax.enterprise.context.ApplicationScoped;
 
 @Readiness
 @ApplicationScoped
@@ -15,11 +15,11 @@ public class StarterReadinessCheck implements HealthCheck {
 
         return true;
     }
-	
+
     @Override
     public HealthCheckResponse call() {
         boolean up = isReady();
         return HealthCheckResponse.named(this.getClass().getSimpleName()).state(up).build();
     }
-    
+
 }
