@@ -36,9 +36,19 @@ To run this microservice locally run the following commands
    CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                                                                    NAMES
    de3aa533f067        mysql:5.7.14                    "docker-entrypoint.s…"   27 hours ago        Up 27 hours         0.0.0.0:9041->3306/tcp   
    ```
-3. Run the application
+3. Set up environment variables
+    export MYSQL_HOST=host.docker.internal
+    export MYSQL_PORT=9041
+    export MYSQL_DATABASE=inventorydb 
+    export SSL_ENABLED=true 
+    export MYSQL_USER=dbuser 
+    export MYSQL_PASSWORD=password
+    export url=jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=${SSL_ENABLED}
+    export dbuser=${MYSQL_USER}
+    export dbpassword=${MYSQL_PASSWORD}
+4. Run the application
     ```
-     appsody run
+     appsody run --docker-options "-e jdbcURL=$url -e dbuser=$dbuser -e dbpassword=$dbpassword"
     ```
    If this runs successfully, you will be able to see the below messages.
     
@@ -55,7 +65,7 @@ To run this microservice locally run the following commands
     [Container] [INFO] Unit tests finished.
     [Container] [INFO] Running integration tests...
     ```
-4. Validate the REST API by visiting the following links:
+5. Validate the REST API by visiting the following links:
     - http://localhost:9080/openapi/ui/
     - http://localhost:9080/index.html
     - http://localhost:9080/health
