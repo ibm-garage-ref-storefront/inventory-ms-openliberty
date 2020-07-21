@@ -37,6 +37,7 @@ To run this microservice locally run the following commands
    de3aa533f067        mysql:5.7.14                    "docker-entrypoint.s…"   27 hours ago        Up 27 hours         0.0.0.0:9041->3306/tcp   
    ```
 3. Set up environment variables
+    ```bash
     export MYSQL_HOST=host.docker.internal
     export MYSQL_PORT=9041
     export MYSQL_DATABASE=inventorydb 
@@ -46,6 +47,7 @@ To run this microservice locally run the following commands
     export url=jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=${SSL_ENABLED}
     export dbuser=${MYSQL_USER}
     export dbpassword=${MYSQL_PASSWORD}
+    ```
 4. Run the application
     ```
      appsody run --docker-options "-e jdbcURL=$url -e dbuser=$dbuser -e dbpassword=$dbpassword"
