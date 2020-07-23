@@ -48,7 +48,7 @@ To run this microservice locally run the following commands
     export dbpassword=${MYSQL_PASSWORD}
 4. Run the application
     ```
-     appsody run --docker-options "-e jdbcURL=$url -e dbuser=$dbuser -e dbpassword=$dbpassword"
+     appsody run --docker-options "-e jdbcURL=$jdbcURL -e dbuser=$dbuser -e dbpassword=$dbpassword"
     ```
    If this runs successfully, you will be able to see the below messages.
     
