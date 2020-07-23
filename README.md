@@ -43,7 +43,7 @@ To run this microservice locally run the following commands
     export SSL_ENABLED=true 
     export MYSQL_USER=dbuser 
     export MYSQL_PASSWORD=password
-    export url=jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=${SSL_ENABLED}
+    export jdbcURL=jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=${SSL_ENABLED}
     export dbuser=${MYSQL_USER}
     export dbpassword=${MYSQL_PASSWORD}
 4. Run the application
