@@ -1,3 +1,3 @@
 id: "20200708141914.33242900"
-project-name: appsody-openliberty
+project-name: inventory-ms-openliberty
 stack: docker.io/kabanero/java-openliberty:0.2

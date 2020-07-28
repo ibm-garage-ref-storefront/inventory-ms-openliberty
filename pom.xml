@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>dev.appsody.starter.java-openliberty</groupId>
-    <artifactId>starter-app</artifactId>
+    <artifactId>inventory-ms-openliberty</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
