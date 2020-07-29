@@ -12,7 +12,7 @@ public class Inventory {
 
     @Getter @Setter private String description;
 
-    @Getter @Setter private double price;
+    @Getter @Setter private int price;
 
     @Getter @Setter private String img_alt;
 
@@ -27,7 +27,7 @@ public class Inventory {
         this.id = id;
     }
 
-    public Inventory(String name, String description, double price, String img_alt, String img, int stock) {
+    public Inventory(String name, String description, int price, String img_alt, String img, int stock) {
         this.name = name;
         this.description = description;
         this.price = price;
