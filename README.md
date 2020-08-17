@@ -103,7 +103,7 @@ Now let us populate the MySQL with data.
     export SSL_ENABLED=true
     export MYSQL_USER=dbuser
     export MYSQL_PASSWORD=password
-    export url=jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=${SSL_ENABLED}
+    export jdbcURL=jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=${SSL_ENABLED}
     export dbuser=${MYSQL_USER}
     export dbpassword=${MYSQL_PASSWORD}
     ```
@@ -114,7 +114,6 @@ Now let us populate the MySQL with data.
     ```
 
    You should have the following output:
-
     ```
     $ docker ps
     CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                                                                                                                                                                     NAMES
