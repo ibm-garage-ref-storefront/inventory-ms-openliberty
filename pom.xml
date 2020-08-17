@@ -16,6 +16,10 @@
     <artifactId>inventory-ms-openliberty</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    
+    <properties>
+    	<app.name>inventory-ms-openliberty</app.name>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -54,12 +58,24 @@
             <version>8.0.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Jaegar -->
+        <!-- For Jaeger -->
+        <!-- tag::jaeger[] -->
         <dependency>
             <groupId>io.jaegertracing</groupId>
             <artifactId>jaeger-client</artifactId>
             <version>0.34.0</version>
-        </dependency> 
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+        <!-- end::jaeger[] -->
         <!-- For tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
