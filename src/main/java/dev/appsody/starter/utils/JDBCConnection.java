@@ -20,7 +20,7 @@ public class JDBCConnection {
 
         try {
             Config config = ConfigProvider.getConfig();
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
             String connectionUrl = config.getValue("jdbcURL", String.class);
             String connectionUsername = config.getValue("dbuser", String.class);
